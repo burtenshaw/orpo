@@ -4,6 +4,9 @@ def default_args(parser):
     parser.add_argument("--data_name", default='HuggingfaceH4/UltraFeedback', type=str)
     parser.add_argument("--model_name", default="gpt2", type=str)
 
+    # Data Arguments
+    parser.add_argument("--max_samples", default=None, type=int)
+    
     # Training Arguments
     parser.add_argument("--torch_compile", default=False, type=bool)
     parser.add_argument("--flash_attention_2", action='store_true')
