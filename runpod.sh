@@ -1,5 +1,5 @@
 pip install datasets accelerate wandb transformers bitsandbytes sentencepiece
-git clone https://github.com/xfactlab/orpo.git
+git clone https://github.com/burtenshaw/orpo.git
 cd orpo
 sed -i 's/num_processes: 2/num_processes: 1/' ./src/accelerate/fsdp.yaml
 sed -i 's/--num_proc", default=8/--num_proc", default=1/' ./src/args.py
