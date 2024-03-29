@@ -64,9 +64,9 @@ class ORPO(object):
             test = self.data[test_split].filter(self.filter_dataset)
             self.test = test.map(self.preprocess_dataset, batched=True, num_proc=self.args.num_proc, remove_columns=self.data[test_split].column_names)       
 
-        train = self.data[train_split].filter(self.filter_dataset)[self.args.max_samples]
+        train = self.data[train_split].filter(self.filter_dataset)[:self.args.max_samples]
         print(f"\n\n>>> {len(train)} / {len(self.data[train_split])} rows left after filtering by prompt length.")
-        self.train = train.map(self.preprocess_dataset, batched=True, num_proc=self.args.num_proc, remove_columns=self.data[:train_split].column_names)                       
+        self.train = train.map(self.preprocess_dataset, batched=True, num_proc=self.args.num_proc, remove_columns=self.data[train_split].column_names)                       
                 
         # Set WANDB & Logging Configurations
         self.run_name = f"{self.args.model_name.split('/')[-1]}-{self.args.data_name.split('/')[-1]}-lambda{self.args.alpha}-ORPO-{self.start.tm_mday}-{self.start.tm_hour}-{self.start.tm_min}"
